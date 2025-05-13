@@ -1,3 +1,19 @@
+import subprocess
+import sys
+
+# Check and install required packages
+required_packages = ['streamlit', 'opencv-python-headless', 'pytesseract', 'numpy', 'pillow', 'requests']
+for package in required_packages:
+    try:
+        __import__(package)
+    except ImportError:
+        print(f"Installing {package}...")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+
+# Your actual app code starts here
+st.title("ID Scanner")
+# ... rest of your app code
 import streamlit as st
 import cv2
 import numpy as np
