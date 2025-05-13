@@ -1,0 +1,20 @@
+name: Make Scripts Executable
+
+on:
+  push:
+    paths:
+      - 'setup.sh'
+
+jobs:
+  make-executable:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Make setup.sh executable
+        run: |
+          chmod +x setup.sh
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add setup.sh
+          git commit -m "Make setup.sh executable" || echo "No changes to commit"
+          git push
